@@ -1,0 +1,2 @@
+include README.md
+recursive-include light_token_manager *
