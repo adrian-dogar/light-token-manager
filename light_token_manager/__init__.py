@@ -1,1 +1,1 @@
-from main import LightTokenManager
+from .main import LightTokenManager
