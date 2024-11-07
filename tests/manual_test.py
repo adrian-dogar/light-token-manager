@@ -30,7 +30,7 @@ ltm_three = LightTokenManager(
     "bbb",
     "profile",
     "client_credentials",
-    local_storage=f"my_personalized_token.json"
+    local_storage=f"abc_personalized_token.json"
 )
 # create new entry in globals, using the provider name as key
 print(f"first token: {ltm_three.get_token()}")
@@ -54,8 +54,7 @@ ltm_three = LightTokenManager(
     "https://cloud-apic.wiremockapi.cloud/api/token",
     "aaa",
     "bbb",
-    "profile",
-    "client_credentials",
+    grant_type="client_credentials",
     payload_format="yaml",
     local_storage = f"apic_cloud_yaml_token.json"
 )
@@ -67,14 +66,28 @@ print(f"first token: {ltm_three.get_token()}")
 print(f"Fetching token from APIC CLOUD API in wiremock - using body arg")
 ltm_three = LightTokenManager(
     "https://cloud-apic.wiremockapi.cloud/api/token",
-    payload_format="yaml",
+    payload_format="json",
     body={
         "client_id": "aaa",
         "client_secret": "bbb",
-        "scope": "profile",
-        "grant_type": "client_credentials"
+        "grant_type": "client_credentials",
+        "realm": "admin/amta"
     },
     local_storage = f"apic_cloud_body_token.json"
+)
+# create new entry in globals, using the provider name as key
+print(f"first token: {ltm_three.get_token()}")
+
+print(f"Fetching token from APIC CLOUD API in wiremock - using body arg")
+ltm_three = LightTokenManager(
+    "https://cloud-apic.wiremockapi.cloud/api/token",
+    payload_format="json",
+    body={
+        "client_id": "aaa",
+        "client_secret": "bbb",
+        "grant_type": "client_credentials",
+        "realm": "admin/amta"
+    }
 )
 # create new entry in globals, using the provider name as key
 print(f"first token: {ltm_three.get_token()}")

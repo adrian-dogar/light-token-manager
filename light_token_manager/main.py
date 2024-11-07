@@ -91,5 +91,5 @@ class LightTokenManager:
             return self.token
 
     def unique_id(self):
-        unique_string = f"{self.token_url}::{self.body['client_id']}::{self.body['scope']}::{self.body['grant_type']}"
+        unique_string = f"{self.token_url}::{json.dumps(self.body)}"
         return hashlib.sha256(unique_string.encode()).hexdigest()[:16]
